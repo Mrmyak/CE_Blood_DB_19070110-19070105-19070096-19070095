@@ -1,0 +1,195 @@
+{% extends 'base.html' %} {% block container %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/styles/style.css" />
+
+
+    </head>  
+    <body > 
+     
+      
+
+
+    <br>  
+    <br>  
+    <form action = "{{url_for('register')}}" id="form-id" method ="post">  
+      <div class="container white z-depth-2">
+        <ul class="tabs teal"> 
+          <li class="tab col s3">
+      </li>
+      
+    <label> Fullname </label>         
+    <input type="text" id="fullname" name="fullname" size="15"/>  
+    <br> <br>  
+      
+      
+    
+    <label for="dateofbirth">Date Of Birth</label>
+    <input type="date" name="dateofbirth" id="dateofbirth">
+    
+    
+    
+    
+
+   <br> <br>
+    <label>Blood Group:</label>   
+    <select class="form-control" id="rating" name="rating" "style="width:20px;">  
+    <option value="A+">A+</option>
+    <option value="B+">B+</option>
+    <option value="AB+">AB+</option>
+    <option value="O+">O+</option>
+    <option value="A-">A-</option>
+    <option value="B-">B-</option>
+    <option value="AB-">AB-</option>
+    <option value="O-">O-</option>
+    </select>  
+    <br>  
+      
+    <label>   
+    Gender :  
+    </label>
+    <input type="radio" name="options" value="male" id="male"/> Male 
+    <input type="radio" name="options" value="female" id="female"/> Female
+    <input type="radio" name="options"  value="other" id="other"/> Other  
+</select> 
+    <br>  
+    <br>  
+    <script type="text/javascript">
+        function setdistricts() {
+          var province_select = document.getElementById('province_code');
+          var sel   = province_select.options[province_select.selectedIndex].value;
+          var district_select = document.getElementById('district_id');
+        
+          if (sel == "Province 1") {
+            district_select.innerHTML = "<option value='Taplejung' id='district_id.1'>Taplejung</option>"
+                             +"<option value='Sankhuwasabha' id='district_id.2'> Sankhuwasabha</option>"
+                             +"<option value='Solukhumbu' id='district_id.3'> Solukhumbu</option>"
+                             +"<option value='Okhaldhunga' id='district_id.4'> Okhaldhunga</option>"
+                             +"<option value='Khotang' id='district_id.5'> Khotang</option>"
+                             +"<option value='Bhojpur' id='district_id.6'> Bhojpur</option>"
+                             +"<option value='Dhankuta' id='district_id.7'> Dhankuta</option>"
+                             +"<option value='Terhathum' id='district_id.8'> Terhathum</option>"
+                             +"<option value='Panchthar' id='district_id.9'> Panchthar</option>"
+                             +"<option value='Ilam' id='district_id.10'> Ilam</option>"
+                             +"<option value='Jhapa' id='district_id.11'> Jhapa</option>"
+                             +"<option value='Morang' id='district_id.12'> Morang</option>"
+                             +"<option value='Sunsari' id='district_id.13'> Sunsari</option>"
+                             +"<option value='Udayepur' id='district_id.14'> Udayepur</option>"
+                             ;
+          } else if (sel == "Province 2"){
+            district_select.innerHTML = "<option value='Saptari' id='district_id.1'>Saptari</option>"
+                             +"<option value='Siraha' id='district_id.2'>Siraha</option>"
+                             +"<option value='Dhanusa' id='district_id.3'>Dhanusa</option>"
+                             +"<option value='Mahhotari' id='district_id.4'> Mahhotari</option>"
+                             +"<option value='Sarlahi' id='district_id.5'> Sarlahi</option>"
+                             +"<option value='Rauthat' id='district_id.6'> Rauthat</option>"
+                             +"<option value='Bara' id='district_id.7'> Bara</option>"
+                             +"<option value='Parsa' id='district_id.8'> Parsa</option>";
+          }
+          else if (sel == "Province 3"){
+            district_select.innerHTML = "<option value='Dolakha' id='district_id.1'>Dolakha</option>"
+                             +"<option value='Sindhupalchaowk' id='district_id.2'>Sindhupalchaowk</option>"
+                             +"<option value='Rasuwa' id='district_id.3'>Rasuwa</option>"
+                             +"<option value='Dhading' id='district_id.4'> Dhading</option>"
+                             +"<option value='Nuwakot' id='district_id.5'> Nuwakot</option>"
+                             +"<option value='Kathmandu' id='district_id.6'> Kathmandu</option>"
+                             +"<option value='Bhaktapur' id='district_id.7'> Bhaktapur</option>"
+                             +"<option value='Lalitpur' id='district_id.8'> Lalitpur</option>"
+                             +"<option value='Kavrepalanchowk' id='district_id.9'> Kavrepalanchowk</option>"
+                             +"<option value='Ramechhap' id='district_id.10'> Ramechhap</option>"
+                             +"<option value='Sindhuli' id='district_id.11'> Sindhuli</option>"
+                             +"<option value='Makwanpur' id='district_id.12'> Makwanpur</option>"
+                             +"<option value='Chitwan' id='district_id.13'> Chitwan</option>";
+          }
+          else if (sel == "Province 4"){
+            district_select.innerHTML = "<option value='Gorkha' id='district_id.1'>Gorkha</option>"
+                             +"<option value='Manang' id='district_id.2'>Manang</option>"
+                             +"<option value='Mustang' id='district_id.3'>Mustang</option>"
+                             +"<option value='Myagdi' id='district_id.4'> Myagdi</option>"
+                             +"<option value='Kaski' id='district_id.5'> Kaski</option>"
+                             +"<option value='Lamjung' id='district_id.6'> Lamjung</option>"
+                             +"<option value='Tanahun' id='district_id.7'> Tanahun</option>"
+                             +"<option value='Nawalparasi East' id='district_id.8'> Nawalparasi East</option>"
+                             +"<option value='Syangja' id='district_id.9'> Syangja</option>"
+                             +"<option value='Parbat' id='district_id.10'> Parbat</option>"
+                             +"<option value='Baglung' id='district_id.11'> Baglung</option>";
+          }
+          else if (sel == "Province 5"){
+            district_select.innerHTML = "<option value='Rukum East' id='district_id.1'>Rukum East</option>"
+                             +"<option value='Rolpa' id='district_id.2'>Rolpa</option>"
+                             +"<option value='Pyuthan' id='district_id.3'>Pyuthan</option>"
+                             +"<option value='Gulmi50' id='district_id.4'> Gulmi</option>"
+                             +"<option value='Argakhanchi' id='district_id.5'> Argakhanchi</option>"
+                             +"<option value='Palpa' id='district_id.6'> Palpa</option>"
+                             +"<option value='Nawalparasi West' id='district_id.7'> Nawalparasi West</option>"
+                             +"<option value='Rupandehi' id='district_id.8'>  Rupandehi</option>"
+                             +"<option value='Kapilbastu' id='district_id.9'> Kapilbastu</option>"
+                             +"<option value='Dang' id='district_id.10'> Dang</option>"
+                             +"<option value='Banke' id='district_id.11'> Banke</option>"
+                             +"<option value='Bardiya' id='district_id.12'> Bardiya</option>";
+          }
+          else if (sel == "Province 6"){
+            district_select.innerHTML = "<option value='Dolpa' id='district_id.1'>Dolpa</option>"
+                             +"<option value='Mugu' id='district_id.2'>Mugu</option>"
+                             +"<option value='Humla' id='district_id.3'>Humla</option>"
+                             +"<option value='Jumla' id='district_id.4'>Jumla</option>"
+                             +"<option value='Kalikot' id='district_id.5'> Kalikot</option>"
+                             +"<option value='Dailekh' id='district_id.6'> Dailekh</option>"
+                             +"<option value='Jajarkot West' id='district_id.7'> Jajarkot West</option>"
+                             +"<option value='Rukum West' id='district_id.8'>  Rukum West</option>"
+                             +"<option value='Salyan' id='district_id.9'> Salyan</option>"
+                             +"<option value='Surkhet' id='district_id.10'> Surkhet</option>";
+          }
+          else if (sel == "Province 7"){
+            district_select.innerHTML = "<option value='Bajura' id='district_id.1'>Bajura</option>"
+                             +"<option value='Bajhang' id='district_id.2'>Bajhang</option>"
+                             +"<option value='Darchula' id='district_id.3'>Darchula</option>"
+                             +"<option value='Baitadi' id='district_id.4'> Baitadi</option>"
+                             +"<option value='Dadeldhura' id='district_id.5'> Dadeldhura</option>"
+                             +"<option value='Doti' id='district_id.6'> Doti</option>"
+                             +"<option value='Achham' id='district_id.7'> Achham West</option>"
+                             +"<option value='Kailali West' id='district_id.8'>  Kailali West</option>"
+                             +"<option value='Kanchanpur' id='district_id.9'> Kanchanpur</option>";
+          } else {
+            district_select.innerHTML = "<option>nothing</option>";
+          }
+        }
+        </script>
+        
+        <label> Province</label>
+        <select id="province_code" name="province_select" onchange="setdistricts()">
+          <option value="" id="province_code.0">Please Select</option>
+          <option value="Province 1" id="province_code.1">Province 1</option>
+          <option value="Province 2" id="province_code.2">Province 2</option>
+          <option value="Province 3" id="province_code.3">Province 3</option>
+          <option value="Province 4" id="province_code.4">Province 4</option>
+          <option value="Province 5" id="province_code.5">Province 5</option>
+          <option value="Province 6" id="province_code.6">Province 6</option>
+          <option value="Province 7" id="province_code.7">Province 7</option>
+    
+        </select>
+        
+        
+        <label> District</label>
+        <select id="district_id" name = "district_id">
+          <option>- ?? -</option>
+        </select>
+
+    
+
+   <br><br>
+    <label>   Email:  
+    <input type="email" id="email" name="email"/> <br>    
+    <br> <br>  
+    
+    <input id= "your-id" type="submit" value="Submit"/>  
+    </form> 
+      
+    
+       
+        </body>
+        {% endblock %}
+
+    

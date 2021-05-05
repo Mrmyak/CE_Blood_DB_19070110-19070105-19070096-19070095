@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PU Blood Database</title>
+    
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300"
+      rel="stylesheet"
+    />
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    /><link rel="stylesheet" href="../static/styles/style.css" />
+    
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="menu-icon">
+        <i class="fas fa-bars header__menu"></i>
+      </div>
+
+      <header class="header">
+        <div class="header__title"></div>
+      </header>
+      <aside class="sidenav">
+        <div class="sidenav__close-icon">
+          <i class="fas fa-times sidenav__brand-close"></i>
+        </div>
+        <ul class="sidenav__list">
+          <a href="{{ url_for('phone_verification') }}""><li class="sidenav__list-item">Register</li></a>
+          <a href="{{ url_for('search') }}""><li class=" sidenav__list-item">Search Blood</li></a>
+          
+          <a href="{{ url_for('aboutus') }}""><li class=" sidenav__list-item">About Us</li></a>
+          <a href="{{ url_for('edit') }}""><li class=" sidenav__list-item">Edit Info</li></a>
+          
+        </ul>
+      </aside>
+      <div class="main">
+
+        {%block container %}{% endblock %}
+        
+      </div>
+    </div>
+  </body>
+  <script>
+    const menuIconEl = $(".menu-icon");
+    const sidenavEl = $(".sidenav");
+    const sidenavCloseEl = $(".sidenav__close-icon");
+
+    // Add and remove provided class names
+    function toggleClassName(el, className) {
+      if (el.hasClass(className)) {
+        el.removeClass(className);
+      } else {
+        el.addClass(className);
+      }
+    }
+
+    // Open the side nav on click
+    menuIconEl.on("click", function () {
+      toggleClassName(sidenavEl, "active");
+    });
+
+    // Close the side nav on click
+    sidenavCloseEl.on("click", function () {
+      toggleClassName(sidenavEl, "active");
+    });
+  </script>
+</html>

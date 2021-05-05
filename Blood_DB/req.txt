@@ -1,0 +1,6 @@
+flask
+authy==2.2.3
+flask-sqlalchemy
+pymysql
+sqlalchemy
+marshmallow
