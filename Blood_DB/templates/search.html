@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block container %}
 
+
     <form>
         <label>Blood Group:</label>   
-    <select class="form-control" id="rating" name="rating" "style="width:20px;"> 
+    <select class="btn btn-secondary dropdown-toggle"  id="rating" name="rating" > 
       <option value="">ALL</option>
     <option value="A+" default>A+</option>
     <option value="B+">B+</option>
@@ -127,7 +128,7 @@
     </script>
     
     <label> Province</label>
-    <select id="province_code" name="province_select" onchange="setdistricts()">
+    <select class="btn btn-secondary dropdown-toggle" id="province_code" name="province_select" onchange="setdistricts()">
       <option value="" id="province_code.0">ALL</option>
       <option value="Province 1" id="province_code.1">Province 1</option>
       <option value="Province 2" id="province_code.2">Province 2</option>
@@ -140,12 +141,14 @@
     </select>
 
         <label> District</label>
-        <select id="district_id" name="district_id">
+        <select class="btn btn-secondary dropdown-toggle" id="district_id" name="district_id">
           <option value='' >ALL</option>
         </select>
 
     </form>
-    <button onclick="submitHandler()">Submit</button> 
+    <br>
+    <button class="btn btn-primary" onclick="submitHandler()">Submit</button> 
+    <br>
     <script>
          
         const submitHandler=() =>{
@@ -195,6 +198,7 @@
         var table = document.createElement("table");
         
         
+        
 
         // Create table header row using the extracted headers above.
         var tr = table.insertRow(-1);                   // table row.
@@ -229,4 +233,6 @@
 
 
     </script>
+    
+    
 {% endblock %}

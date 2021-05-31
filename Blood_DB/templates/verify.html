@@ -1,4 +1,5 @@
-<html>
+{% extends 'base.html' %} {% block container %}
+
   <head>
     <title>Phone Verification</title>
   </head>
@@ -6,12 +7,14 @@
   <body>
     <h1>Hello There , </h1>
 
-    <form action="/verify" accept-charset="UTF-8" method="post">
+    <form action="/verify" method="post">
       <div>
-        <label> Please enter the code you were sent : </label>
+        <h3> Please enter the code you were sent: </h3>
         <input name="token" id="token"></select>
       </div>
-      <button name="button" type="submit">Verify</button>
+      <br>
+      <button class="btn btn-primary" name="button" type="submit">Verify</button>
     </form>
   </body>
-</html>
+    
+{% endblock %}

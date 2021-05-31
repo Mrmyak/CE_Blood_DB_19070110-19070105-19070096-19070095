@@ -1,6 +1,6 @@
 flask
 authy==2.2.3
-flask-sqlalchemy
 pymysql
-sqlalchemy
+Flask-SQLAlchemy==2.4.4
+SQLAlchemy<1.4
 marshmallow
