@@ -1,14 +1,5 @@
  
 
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-body{
-   margin:0;
-   padding:0;
-   font-family: 'Roboto', sans-serif;
-   position:relative;
-}
-
-
 .container{
    width:100%;
 }
@@ -111,8 +102,9 @@ body{
    padding-top:20px;
    position:relative;
    min-width:20%;
-   height:500px !important;
+   height:50px !important;
    height:auto;
+   width: 400px;
    background-color:#fff;
    display:inline-block;
    margin:40px 6.5%;
@@ -128,6 +120,8 @@ body{
    border-radius:50%;
    margin:auto;
    color:#fff;
+   background-image:url(face.jpg);
+   
 }
 .circle-container h1{
    position:absolute;
@@ -136,6 +130,7 @@ body{
    transform:translate(-50%,-50%);
    margin:0;
    font-size:60px;
+   
 }
 
 .team .card h2{
@@ -150,6 +145,7 @@ body{
    width:250px;
    margin:30px auto;
    text-align:center;
+   
 
 }
 .clear{

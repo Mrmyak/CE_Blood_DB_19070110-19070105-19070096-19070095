@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block container %}
 
-    <div class=''>
+<div  class=''>
+
+
     <form>
         <label>Blood Group:</label>   
     <select class="btn btn-secondary dropdown-toggle"  id="rating" name="rating" > 
@@ -146,12 +148,11 @@
         </select>
 
     </form>
-   
     <br>
     <button class="btn btn-primary" onclick="submitHandler()">Submit</button> 
     <br>
     <br>
-      </div>
+    </div>
     <script>
          
         const submitHandler=() =>{
@@ -159,7 +160,7 @@
           let prov = document.getElementById("province_code").value
           let dist = document.getElementById("district_id").value
 
-          let url = new URL('http://localhost:5000/user');
+          let url = new URL('http://localhost:5000/post');
           if(bg)
           url.searchParams.set('type',bg );
           if(prov)
@@ -236,7 +237,6 @@
 
 
     </script>
-   
     
     
 {% endblock %}

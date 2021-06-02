@@ -1,27 +1,12 @@
 {% extends 'base.html' %} {% block container %}
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <link rel="stylesheet" href="../static/styles/style.css" />
-
-
-    </head>  
-    <body > 
+    <div class='container'> 
+    <h1> Registration form </h1>
+    <br>  
+    <form class="section-whole" action = "{{url_for('register')}}" id="form-id" method ="post">  
      
       
-
-
-    <br>  
-    <br>  
-    <form action = "{{url_for('register')}}" id="form-id" method ="post">  
-      <div class="container white z-depth-2">
-        <ul class="tabs teal"> 
-          <li class="tab col s3">
-      </li>
-      
     <label> Fullname </label>         
-    <input type="text" id="fullname" name="fullname" size="15"/>  
+    <input type="text" id="fullname" name="fullname"  class="field text fn"/>  
     <br> <br>  
       
       
@@ -187,10 +172,9 @@
     
     <input id= "your-id" type="submit" value="Submit"/>  
     </form> 
-      
+    </div>
     
-       
-        </body>
+    
         {% endblock %}
 
     

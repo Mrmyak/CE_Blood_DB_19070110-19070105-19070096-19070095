@@ -1,9 +1,7 @@
-<head>
-  <link rel="stylesheet" href="../static/styles/bloodrequest.css" />
-</head>
+{% extends 'base.html' %}{% block container %}
 
-
-<form action = "{{url_for('bloodrequest')}}" id="form-id" method ="post">
+ <div>
+<form class='container-big' action = "{{url_for('bloodrequest')}}" id="form-id" method ="post">
 
   <header>
     <center><h2>Blood Request Form</h2>
@@ -12,9 +10,9 @@
   </header>
   
   <div>
-    <label class="desc" id="title1" for="Field1">Full Name</label>
+    <label class="desc" id="fullname" for="fullname">Full Name</label>
     <div>
-      <input id="fullname" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1">
+      <input id="fullname" name="fullname" type="text" class="field text fn" value="" size="8" tabindex="1">
     </div>
   </div>
   
@@ -24,7 +22,7 @@
     	Blood Group
     </label>
     <div>
-    <select id="bloodgroup" name="Field106" class="field select medium" tabindex="11"> 
+    <select id="bloodgroup" name="bloodgroup" class="btn btn-secondary dropdown-toggle" tabindex="11"> 
       <option value="">Select</option>
     <option value="A+">A+</option>
     <option value="B+">B+</option>
@@ -38,35 +36,35 @@
     </div>
   </div>
    <div>
-    <label class="desc" id="title1" for="Field1">Age</label>
+    <label class="desc" id="age" for="age">Age</label>
     <div>
-      <input id="Field1" name="Field1" type="number" class="field text fn" value="" size="8" tabindex="1">
+      <input id="age" name="age" type="number" class="field text fn" value="" size="8" tabindex="1">
     </div>
   </div>
     
   
   <div>
-    <label class="desc" id="title3" for="Field3">
+    <label class="desc" id="don" for="don">
       When do you need blood?
     </label>
     <div>
-      <input id="don" name="Field3" type="date" spellcheck="false" value="" maxlength="255" tabindex="3"> 
+      <input id="don" name="don" type="date" spellcheck="false" value="" maxlength="255" tabindex="3"> 
    </div>
   </div>
  <div>
-    <label class="desc" id="units" for="Field3">
+    <label class="desc" id="units" for="units">
       How many units blood do you need?
     </label>
     <div>
-      <input id="Field3" name="Field3" type="email" spellcheck="false" value="" maxlength="255" tabindex="3"> 
+      <input id="units" name="units" type="number" spellcheck="false" value="" maxlength="255" tabindex="3"> 
    </div>
   </div>
   <div>
-    <label class="desc" id="email" for="Field3">
+    <label class="desc" id="email" for="email">
       Email
     </label>
     <div>
-      <input id="Field3" name="Field3" type="email" spellcheck="false" value="" maxlength="255" tabindex="3"> 
+      <input id="email" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="3"> 
    </div>
   </div>
   
@@ -172,8 +170,8 @@
         }
         </script>
         
-        <label > Province</label>
-        <select name="" class="field select medium" tabindex="11" id="province_code"  name="province_select" onchange="setdistricts()">
+        <label> Province</label>
+        <select class="btn btn-secondary dropdown-toggle" id="province_code" name="province_select" onchange="setdistricts()">
           <option value="" id="province_code.0">Please Select</option>
           <option value="Province 1" id="province_code.1">Province 1</option>
           <option value="Province 2" id="province_code.2">Province 2</option>
@@ -187,50 +185,49 @@
         
         
         <label> District</label>
-        <select class="field select medium" tabindex="11" id="district_id" name = "district_id">
-          <option>- ?? -</option>
+        <select class="btn btn-secondary dropdown-toggle" id="district_id" name="district_id">
+          <option value='' >ALL</option>
         </select>
-  
    <div>
      <br>
-    <label class="desc" id="location" for="Field1">Location</label>
+    <label class="desc" id="location" for="location">location</label>
     <div>
-      <input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1">
+      <input id="location" name="location" type="text" class="field text fn" value="" size="8" tabindex="1">
     </div>
   </div>
    <div>
-    <label class="desc" id="hospital" for="Field1">Hospital</label>
+    <label class="desc" id="hospital" for="hospital">Hospital</label>
     <div>
-      <input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1">
+      <input id="hospital" name="hospital" type="text" class="field text fn" value="" size="8" tabindex="1">
     </div>
   </div>
    <div>
-    <label class="desc" id="purpose" for="Field1">Purpose</label>
+    <label class="desc" id="purpose" for="purpose">Purpose</label>
     <div>
-      <input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1">
+      <input id="purpose" name="purpose" type="text" class="field text fn" value="" size="8" tabindex="1">
     </div>
   </div>
 
    <div>
      <br>
-    <label class="desc" id="title4" for="Field4">
+    <label class="desc" id="message" for="message">
       Message
     </label>
   
     <div>
-      <textarea id="message" name="Field4" spellcheck="true" rows="10" cols="50" tabindex="4"></textarea>
+      <textarea id="message" name="message" spellcheck="true" rows="10" cols="50" tabindex="4"></textarea>
     </div>
   </div>
 
   
   <div>
 		<div>
-  		<input id="saveForm" name="saveForm" type="submit" value="Submit">
+  		<input id= "your-id" type="submit" value="Submit"/>  
     </div>
 	</div>
   
 </form>
 
+{% endblock %}
 
  
-

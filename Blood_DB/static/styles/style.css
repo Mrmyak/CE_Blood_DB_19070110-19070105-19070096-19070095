@@ -11,7 +11,8 @@ body {
   margin-right: auto;
   padding: 0;
   color: #fff;
-  box-sizing: border-box;
+  box-sizing: border-box; 
+/*   background: url("bloodpic.jpg") */
 }
 
 /* Assign grid instructions to our parent grid container, mobile-first (hide the sidenav) */
@@ -41,7 +42,7 @@ body {
 }
 
 /* Give every child element its grid name */
-.header {
+/*.header {
   grid-area: header;
   font-size: 1.3em;
   border-radius: 10px;
@@ -49,7 +50,7 @@ body {
   line-height: 50px;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
-}
+}*/
 
 /* Make room for the menu icon on mobile */
 .header__title {
@@ -129,17 +130,44 @@ body {
 @media only screen and (min-width: 65.625em) {
   /* Break out main cards into two columns */
 }
-#country-dropdown {
-  width: 100%;
-  overflow: hidden;
-}
-
+#
 .main {
   grid-area: main;
 }
-.table,
-th,
-td {
-  border: 1px solid black;
+.container {
+  background-color: #FFE4E1	;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  height: 100vh;
+  border-radius: 25px;
 }
-
+.container-small {
+  background-color: #FFE4E1	;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  height: auto;
+ 
+}
+.container-big {
+  background-color: #FFE4E1	;
+  width: auto;
+  position: top;
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  height: 120vh;;
+ 
+  
+  
+ 
+}

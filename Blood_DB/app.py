@@ -67,7 +67,7 @@ class BloodRequest(db.Model):
     __tablename__ = "BloodRequest"
     ID = db.Column(db.Integer,primary_key=True,autoincrement=True)
     fullname = db.Column(db.String(80), nullable=False)
-    don=db.Column(db.String(20) , nullable=True)
+    date_of_need=db.Column(db.String(20) , nullable=True)
     blood_group=db.Column(db.String(10), nullable= False )
     #sex = db.Column(db.String(120), nullable=True)
     province = db.Column(db.String(120), nullable=False)
@@ -83,10 +83,10 @@ class BloodRequest(db.Model):
     
     date_created= db.Column(db.String(120), default =datetime.utcnow())
     phone_number=db.Column(db.BigInteger(),unique=False,primary_key=True)
-    def __init__(self, fullname,don, blood_group, province,district, email,message,purpose,units,age,location,hospital, date_created,phone_number):
+    def __init__(self, fullname,date_of_need, blood_group, province,district, email,message,purpose,units,age,location,hospital, date_created,phone_number):
         self.fullname=fullname
         self.blood_group=blood_group
-        self.don=don
+        self.date_of_need=date_of_need
         self.province=province
         self.district=district
         self.email=email
@@ -100,13 +100,13 @@ class BloodRequest(db.Model):
         self.phone_number=phone_number
         
 
-class UserSchema(ma.Schema):
+class PosterSchema(ma.Schema):
     class Meta:
-        fields=('fullname','blood_group','sex','province','district' ,'email','phone_number')
+        fields=('fullname','blood_group','sex','province','district' ,'email','phone_number','purpose','hospital','location','date_of_need','units')
 
 #initialise schema
-user_schema=UserSchema()
-users_schema=UserSchema(many=True)
+poster_schema=PosterSchema()
+posters_schema=PosterSchema(many=True)
 
 
 
@@ -124,16 +124,53 @@ def phone_verification():
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
         method = request.form.get("method")
+
         session['country_code'] = country_code
         session['phone_number'] = phone_number
+
         api.phones.verification_start(phone_number, country_code, via=method)
+
         return redirect(url_for("verify"))
 
     return render_template("phone_verification.html")
 
 
 @app.route("/verify", methods=["GET", "POST"])
+@cross_origin()
 def verify():
+    if request.method == "POST":
+            token = request.form.get("token")
+
+            phone_number = session.get("phone_number")
+            session["phone_number"]=phone_number
+            country_code = session.get("country_code")
+
+            verification = api.phones.verification_check(phone_number,
+                                                         country_code,
+                                                         token)
+
+            if verification.ok():
+                return redirect(url_for("register"))
+
+    return render_template("verify.html")
+
+
+@app.route("/phone_verification_post", methods=["GET", "POST"])
+def phone_verification_post():
+    if request.method == "POST":
+        country_code = request.form.get("country_code")
+        phone_number = request.form.get("phone_number")
+        method = request.form.get("method")
+        session['country_code'] = country_code
+        session['phone_number'] = phone_number
+        api.phones.verification_start(phone_number, country_code, via=method)
+        return redirect(url_for("verifypost")) 
+
+    return render_template("phone_verification_post.html")
+
+@cross_origin
+@app.route("/verify_post", methods=["GET", "POST"])
+def verifypost():
     if request.method == "POST":
             token = request.form.get("token")
 
@@ -143,9 +180,11 @@ def verify():
             verification = api.phones.verification_check(phone_number,country_code,token)
 
             if verification.ok():
-                return redirect(url_for("register"))
+                return redirect(url_for("bloodrequest"))
 
-    return render_template("verify.html")
+    return render_template("verify_post.html")
+
+
 
 
 @app.route("/register", methods=["GET","POST"])
@@ -179,8 +218,8 @@ def register():
         db.session.add(new_user)  # Adds new User record to database
         print('new user added')
         db.session.commit()
-        print("Commit")
-        return user_schema.jsonify(new_user)
+        print("Commited i database")
+        return render_template('RegisteredSuccessPage.html')
     
         
     except Exception as e:
@@ -197,6 +236,30 @@ def register():
 def getusers():
     users=User.query.all()
     return users_schema.jsonify(users)
+
+
+@app.route("/posts", methods=["GET"])
+@cross_origin()
+def getposters():
+    posters=BloodRequest.query.all()
+    return posters_schema.jsonify(posters)
+
+@app.route('/post', methods=['GET'])
+@cross_origin()   
+def get_postersquery(): 
+    reqArgs = request.args
+    query = BloodRequest.query
+    if "type" in reqArgs:
+        query = query.filter(BloodRequest.blood_group == reqArgs.get("type"))
+    if "dis" in reqArgs:
+        query = query.filter(BloodRequest.district == reqArgs.get("dis"))
+    if "prov" in reqArgs:
+        query = query.filter(BloodRequest.province == reqArgs.get("prov"))
+    
+    result = posters_schema.dump(query)
+
+    return jsonify(result)
+
 
 
 @app.route('/user', methods=['GET'])
@@ -216,10 +279,15 @@ def get_usersquery():
     return jsonify(result)
 
 @app.route("/search", methods=["GET"])
-
 @cross_origin()
 def search():
     return(render_template("search.html"))
+
+@app.route("/helppost", methods=["GET"])
+@cross_origin()
+def help():
+    return(render_template("help.html"))
+
 
 
 @cross_origin()
@@ -237,15 +305,16 @@ def bloodrequestget():
 @cross_origin()
 @app.route("/bloodrequest", methods=["POST"])
 def bloodrequest():
-    users=None
-    print("Hello naoao")
+    poster=None
     try:
 
         fullname = request.form.get("fullname")
-        don=request.form.get("don")
+        date_of_need=request.form.get("don")
         blood_group=request.form.get("bloodgroup")
         province=str(request.form.get('province_select')) 
-        district=str(request.form.get('district_ID'))
+        
+        print(province)
+        district=str(request.form.get('district_id'))
         email=request.form.get('email')
         now=datetime.now()
         date_created = now.strftime("%d/%m/%Y %H:%M:%S")
@@ -260,7 +329,7 @@ def bloodrequest():
         units=request.form.get('units')
         
         #fullname="Mahesh Dada"
-        #don=121212
+        #date_of_need=121212
         #blood_group= "B+"
         #province="hahahaha"
         #district="bababab"
@@ -270,20 +339,22 @@ def bloodrequest():
         #message="helppppppppppppppppp"
         #age=22
         #units= 23
-        print('uew user aghi')
+        
     
-        new_user = BloodRequest(fullname,don, blood_group, province,district,email,message,purpose,units,age,location,hospital, date_created,phone_number)
+        new_poster=BloodRequest(fullname,date_of_need,blood_group,province,district,email,message,purpose,units,age,location,hospital,date_created,phone_number)
+        
         print("Hello before session")
-        db.session.add(new_user)  # Adds new User record to database
+        db.session.add(new_poster)  # Adds new User record to database
         print("sessionpachi")
+        print(jsonify(poster))
         db.session.commit()
         print("Commit pchi")
-        return user_schema.jsonify(new_user)
+        return render_template('RegisteredSuccessPage.html')
         
     except Exception as e:
         print(e)
         return(render_template("errorpage.html"))
-        users=User.query.all()
+        poster=BloodRequest.query.all()
     return("Srror vayo dda")
     #return redirect(url_for("bloodrequest"))
 

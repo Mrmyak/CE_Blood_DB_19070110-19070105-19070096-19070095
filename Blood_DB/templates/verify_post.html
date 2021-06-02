@@ -3,11 +3,11 @@
   <head>
     <title>Phone Verification</title>
   </head>
- <div class='container'>
+    <div class='container'>
   <body>
     <h1>Hello There , </h1>
 
-    <form action="/verify" method="post">
+    <form action="/verify_post" method="post">
       <div>
         <h3> Please enter the code you were sent: </h3>
         <input name="token" id="token"></select>
@@ -16,5 +16,6 @@
       <button class="btn btn-primary" name="button" type="submit">Verify</button>
     </form>
   </body>
-    </div>
+  </div>
+    
 {% endblock %}

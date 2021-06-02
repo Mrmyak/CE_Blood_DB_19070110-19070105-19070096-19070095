@@ -7,7 +7,15 @@ body {
 table {
   border: 5px solid #ccc;
   border-collapse: collapse;
-  margin: 10px;
+  margin: 0px;
+  padding: 0;
+  width: auto;
+  table-layout: fixed;
+}
+tablesmall {
+  border: 5px solid #ccc;
+  border-collapse: collapse;
+  margin: 0px;
   padding: 0;
   width: 100%;
   table-layout: fixed;
@@ -80,7 +88,5 @@ table th {
     text-transform: uppercase;
   }
   
-  table td:last-child {
-    border-bottom: 0;
-  }
+  
 }
