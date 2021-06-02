@@ -1,5 +1,5 @@
 # Readme!
-A better upgraded version may be available on github: https://github.com/Mrmyak/Project-I
+A better upgraded version may be available on github: https://github.com/Mrmyak/CE_Blood_DB_19070110-19070105-19070096-19070095
 
 ## About Blood Database
 Hi! we are students from Pokhara University pursuing Bachelor in Computer Engineering. As the first project we have tried to build a **Blood Database**. It is a simple web application developed in Python where one interested person can register entering his Blood information and location. The provided information is intended  be helpful when another person who is in search of blood finds it.
